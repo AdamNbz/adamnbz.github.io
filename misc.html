@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="nbzzz's personal website" />
+  <title>nbzzz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+    <link rel="icon" class="logo" href="images/head_avt.jpg">
+</head>
+<body>
+  <!-- Navigation -->
+    <nav>
+        <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a>About <i class="fa-solid fa-caret-down"></i></a>
+                <ul>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="cv.html">CV</a></li>
+                </ul>
+            </li>
+            <li><a href="misc.html">Misc.</a></li>
+        </ul>
+    </nav>
+
+  <!-- Main content -->
+  <main class="page-content">
+    <section class="links-section">
+      <h1>Website</h1>
+
+      <!-- search bar -->
+      <input
+        type="search"
+        class="search-input"
+        placeholder="Tìm kiếm đường dẫn..."
+        aria-label="Search links"
+      />
+
+      <!-- School materials group -->
+      <div class="links-group">
+        <h2>School Materials</h2>
+        <ul class="links-list">
+            <li><a href="https://courses.uit.edu.vn" target="_blank">Course</a></li>
+            <li><a href="https://daa.uit.edu.vn" target="_blank">Student</a></li>
+            <li><a href="https://drl.uit.edu.vn" target="_blank">DRL</a></li>
+            <li><a href="is208-vuonsaobang" target="_blank">IS208 Website</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.querySelector('.search-input');
+        const groups = document.querySelectorAll('.links-group');
+
+        input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+
+        groups.forEach(group => {
+            const items = Array.from(group.querySelectorAll('li'));
+            let anyVisible = false;
+
+            items.forEach(li => {
+            const text = li.textContent.toLowerCase();
+            const match = text.includes(q);
+            li.style.display = match ? '' : 'none';
+            if (match) anyVisible = true;
+            });
+            group.style.display = anyVisible ? '' : 'none';
+        });
+        });
+    });
+</script>
+
+</html>
