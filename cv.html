@@ -10,6 +10,9 @@
   <link rel="icon" class="logo" href="images/head_avt.jpg">
 </head>
 <body class="cv-page">
+  <!-- Sakura Rain Effect -->
+  <div class="sakura-container" id="sakura-container"></div>
+
   <!-- Navigation -->
   <nav>
     <ul id="nav-menu">
@@ -215,20 +218,20 @@
             <i class="fa-solid fa-language"></i>
             Languages
           </h2>
-          <div class="cv-item" style="border-left: none; padding: 20px;">
-            <div class="language-item">
-              <span class="language-name">🇻🇳 Vietnamese</span>
-              <div class="language-bar">
-                <div class="language-level" style="width: 100%;"></div>
+          <div class="languages-grid">
+            <div class="language-card">
+              <div class="language-flag">🇻🇳</div>
+              <div class="language-info">
+                <h4>Vietnamese</h4>
+                <span class="language-level-badge native">Native Speaker</span>
               </div>
-              <span class="language-text">Native</span>
             </div>
-            <div class="language-item">
-              <span class="language-name">🇬🇧 English</span>
-              <div class="language-bar">
-                <div class="language-level" style="width: 70%;"></div>
+            <div class="language-card">
+              <div class="language-flag">🇬🇧</div>
+              <div class="language-info">
+                <h4>English</h4>
+                <span class="language-level-badge intermediate">IELTS 6.5 (Level B2)</span>
               </div>
-              <span class="language-text">Intermediate (B1-B2)</span>
             </div>
           </div>
         </div>
@@ -297,5 +300,7 @@
       <span>Made with 💖 by <a href="https://github.com/AdamNbz">nbzzz</a></span>
     </div>
   </footer>
+
+  <script src="sakura.js"></script>
 </body>
 </html>

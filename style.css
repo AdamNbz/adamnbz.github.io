@@ -1,5 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+/* ==================== SAKURA RAIN EFFECT ==================== */
+.sakura-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sakura-petal {
+  position: absolute;
+  top: -20px;
+  background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 50%, #fff0f5 100%);
+  border-radius: 150% 0 150% 0;
+  opacity: 0.8;
+  animation: sakuraFall linear forwards, sakuraSway ease-in-out infinite;
+  box-shadow: 0 0 5px rgba(255, 183, 197, 0.5);
+}
+
+.sakura-petal.petal-1 {
+  border-radius: 150% 0 150% 0;
+}
+
+.sakura-petal.petal-2 {
+  border-radius: 0 150% 0 150%;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb7c5 50%, #ffe4e9 100%);
+}
+
+.sakura-petal.petal-3 {
+  border-radius: 50% 150% 50% 150%;
+  background: linear-gradient(135deg, #ffe4e9 0%, #ffb7c5 50%, #ffc0cb 100%);
+}
+
+@keyframes sakuraFall {
+  0% {
+    top: -20px;
+    opacity: 0;
+    transform: translateX(0) rotate(var(--rotation, 0deg));
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    transform: translateX(var(--sway-amount, 100px)) rotate(calc(var(--rotation, 0deg) + 360deg));
+  }
+}
+
+@keyframes sakuraSway {
+  0%, 100% {
+    transform: translateX(0) rotate(var(--rotation, 0deg));
+  }
+  25% {
+    transform: translateX(calc(var(--sway-amount, 50px) * 0.5)) rotate(calc(var(--rotation, 0deg) + 15deg));
+  }
+  50% {
+    transform: translateX(var(--sway-amount, 50px)) rotate(calc(var(--rotation, 0deg) + 30deg));
+  }
+  75% {
+    transform: translateX(calc(var(--sway-amount, 50px) * 0.5)) rotate(calc(var(--rotation, 0deg) + 15deg));
+  }
+}
+
 /* ==================== PAGE TRANSITIONS ==================== */
 @keyframes fadeIn {
     from {
@@ -246,12 +316,14 @@ nav ul li ul li a:hover {
 .profile-card h2 {
     margin: 0;
     font-size: 2.4rem;
-    color: #d75a8a;
+    color: #c94578;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 .profile-card p {
     margin: 15px 0;
-    color: #e4a6df;
+    color: #a855a1;
     font-size: 1.2rem;
+    font-weight: 500;
 }
 
 /* Social links */
@@ -263,13 +335,15 @@ nav ul li ul li a:hover {
 }
 
 .socials a {
-    color: #e4a6df;
+    color: #b8589e;
     font-size: 2rem;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .socials a:hover {
-    color: #d75a8a;
+    color: #c94578;
+    transform: translateY(-3px) scale(1.1);
 }
 
 /* Footer */
@@ -610,44 +684,65 @@ body.cv-page {
   box-shadow: 0 4px 10px rgba(215, 90, 138, 0.3);
 }
 
-/* CV Languages */
-.language-item {
+/* CV Languages - New Design */
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.language-card {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 12px;
+  gap: 20px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  border: 2px solid rgba(215, 90, 138, 0.2);
+  transition: all 0.3s ease;
 }
 
-.language-item:last-child {
-  margin-bottom: 0;
+.language-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(215, 90, 138, 0.2);
+  border-color: rgba(215, 90, 138, 0.4);
 }
 
-.language-name {
-  min-width: 100px;
-  font-weight: 600;
+.language-flag {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.language-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
   color: #333;
+  font-weight: 600;
 }
 
-.language-bar {
-  flex: 1;
-  height: 10px;
-  background: rgba(215, 90, 138, 0.2);
-  border-radius: 5px;
-  overflow: hidden;
+.language-level-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.language-level {
-  height: 100%;
-  background: linear-gradient(90deg, #d75a8a, #e4a6df);
-  border-radius: 5px;
-  transition: width 0.8s ease;
+.language-level-badge.native {
+  background: linear-gradient(135deg, #d75a8a, #e4a6df);
+  color: #fff;
 }
 
-.language-text {
-  min-width: 120px;
-  text-align: right;
+.language-level-badge.intermediate {
+  background: rgba(215, 90, 138, 0.15);
+  color: #c94578;
+  border: 1px solid rgba(215, 90, 138, 0.3);
+}
+
+.language-level-badge.beginner {
+  background: rgba(100, 100, 100, 0.1);
   color: #666;
-  font-size: 0.9rem;
+  border: 1px solid rgba(100, 100, 100, 0.2);
 }
 
 /* CV Awards */
